@@ -39,7 +39,7 @@
 # 📖 [Awesome Book] <a name="about-project"></a>
 
 
-**[Awesome Books]** is a website that we can add and remove book which I used JavaScript modules pattern.
+**[Awesome Books]** is a Single Page website that we can add and remove book, And I used JavaScript modules pattern.
 
 ## 🛠 Built With <a name="built-with"></a>
 
