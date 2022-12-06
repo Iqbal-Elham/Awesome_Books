@@ -1,7 +1,4 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-unused-vars */
-/* eslint-disable max-classes-per-file */
-
+/* eslint-disable-next-line no-unused-vars */
 import { displayBook } from './modules/collection.js';
 import { DateTime } from './modules/luxon.js';
 

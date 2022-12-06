@@ -1,5 +1,3 @@
-/* eslint-disable no-use-before-define */
-
 import Book from './book.js';
 
 const titleId = document.getElementById('title');
@@ -7,38 +5,7 @@ const authorId = document.getElementById('author');
 const bookContainer = document.getElementById('book_container');
 const formBook = document.getElementById('book_form');
 
-export default class Collection {
-  constructor() {
-    this.library = [];
-  }
-
-  addBook = () => {
-    const id = Math.floor(Math.random() * 10000);
-    const newBook = new Book(id, titleId.value, authorId.value);
-    this.library.push(newBook);
-    this.addStorage(this.library);
-    displayBook(this.library);
-  }
-
-  /* eslint-disable class-methods-use-this */
-  /* Add Storage */
-  addStorage = (library) => {
-    localStorage.setItem('newBook', JSON.stringify(library));
-  }
-
-  /* Remove Storage */
-  /* eslint-disable eqeqeq */
-  removeElement = (element) => {
-    this.library = this.library.filter((i) => i.id != element.id);
-    this.addStorage(this.library);
-    displayBook(this.library);
-  }
-}
-
-const col = new Collection();
-window.col = col;
-
-export const displayBook = (library) => {
+const displayBook = (library) => {
   const data = library.map(
     (book) => `
         <tr class="d-flex w-100 justify-content-between">
@@ -49,6 +16,36 @@ export const displayBook = (library) => {
   );
   bookContainer.innerHTML = data.join('');
 };
+
+export default class Collection {
+  constructor() {
+    this.library = [];
+  }
+
+  /* Add Book */
+  addBook = () => {
+    const id = Math.floor(Math.random() * 10000);
+    const newBook = new Book(id, titleId.value, authorId.value);
+    this.library.push(newBook);
+    Collection.addStorage(this.library);
+    displayBook(this.library);
+  }
+
+  /* Remove Storage */
+  removeElement = (element) => {
+    this.library = this.library.filter((i) => Number(i.id) !== Number(element.id));
+    Collection.addStorage(this.library);
+    displayBook(this.library);
+  }
+
+  /* Add Storage */
+  static addStorage = (library) => {
+    localStorage.setItem('newBook', JSON.stringify(library));
+  }
+}
+
+const col = new Collection();
+window.col = col;
 
 formBook.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -62,3 +59,5 @@ window.addEventListener('DOMContentLoaded', () => {
     displayBook(JSON.parse(localStorage.newBook));
   }
 });
+
+export { displayBook };
