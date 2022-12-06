@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#book_container {
+  border: 1px solid lightgray;
+}
+
+#book_container tr {
+  padding: 0.2rem;
+}
+
+#add_book_form,
+#contact {
+  display: none;
+}
+
+.navbar-nav,
+.navbar-brand {
+  cursor: pointer;
+}
